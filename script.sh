@@ -42,26 +42,31 @@ echo -e "\n=====================================================================
 
 
 
-function Zapusk_WOL {
+function Uznayu_Adapters_and_zapusk_Wake_on_LAN {
 
 uznayu_adapters=$(ip a | awk '/192.168./ {print $NF}')
 
 echo "Запускаю команду для включения Wake on LAN"
+
 sudo ethtool -s $uznayu_adapters wol g
+}
+Uznayu_Adapters_and_zapusk_Wake_on_LAN
+
+function Avtomatizaciya {
 
 echo "Создам скрипт, который будет запускать CRON"
 touch $HOME/cron_wol.sh
 echo "sudo ethtool -s $uznayu_adapters wol g" > $HOME/cron_wol.sh
 PROPUSK
-echo "Добавь команду в CRON"
+echo -ne "\r\033[KДобавь команду в CRON\n\nСКРИПТ ПОКАЖЕТ ИНФУ 30 СЕКУНД"
 PROPUSK
 echo ""
 echo -e "1) sudo crontab -e"
 echo ""
+echo -ne "\r\033[K"
 echo "Добавь команду в CRON"
 echo -e "2) @reboot $HOME/cron_wol.sh"
 echo ""
-
-
+echo -ne "\r\033[K"
 }
-Zapusk_WOL
+Avtomatizaciya
