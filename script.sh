@@ -51,7 +51,7 @@ sudo ethtool -s $uznayu_adapters wol g
 
 echo "Создам скрипт, который будет запускать CRON"
 touch $HOME/cron_wol.sh
-echo "ip a | awk '/192.168./ {print $NF}'" > $HOME/cron_wol.sh
+echo "sudo ethtool -s $uznayu_adapters wol g" > $HOME/cron_wol.sh
 PROPUSK
 echo "Добавь команду в CRON"
 PROPUSK
