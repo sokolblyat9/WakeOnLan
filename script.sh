@@ -33,3 +33,32 @@ function Proverka_OS {
     fi
 }
 Proverka_OS
+
+
+function PROPUSK {
+echo "\n===========================================================================================\n"
+}
+
+
+
+
+function Zapusk_WOL {
+
+uznayu_adapters=$(ip a | awk '/192.168./ {print $NF}')
+
+echo "Запускаю команду для включения Wake on LAN"
+sudo ethtool -s $uznayu_adapters wol g
+
+echo "Создам скрипт, который будет запускать CRON"
+touch $HOME/cron_wol.sh
+echo "ip a | awk '/192.168./ {print $NF}'" > $HOME/cron_wol.sh
+PROPUSK
+echo "Добавь команду в CRON"
+PROPUSK
+echo ""
+@reboot $HOME/cron_wol.sh
+echo ""
+
+
+}
+Zapusk_WOL
