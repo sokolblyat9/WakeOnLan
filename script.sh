@@ -36,7 +36,7 @@ Proverka_OS
 
 
 function PROPUSK {
-echo "\n===========================================================================================\n"
+echo -e "\n===========================================================================================\n"
 }
 
 
@@ -56,7 +56,10 @@ PROPUSK
 echo "Добавь команду в CRON"
 PROPUSK
 echo ""
-@reboot $HOME/cron_wol.sh
+echo -e "1) sudo crontab -e"
+echo ""
+echo "Добавь команду в CRON"
+echo -e "2) @reboot $HOME/cron_wol.sh"
 echo ""
 
 
