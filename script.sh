@@ -58,15 +58,13 @@ echo "Создам скрипт, который будет запускать CR
 touch $HOME/cron_wol.sh
 echo "sudo ethtool -s $uznayu_adapters wol g" > $HOME/cron_wol.sh
 PROPUSK
-echo -ne "\r\033[KДобавь команду в CRON\n\nСКРИПТ ПОКАЖЕТ ИНФУ 30 СЕКУНД"
+echo -ne "\r\033[KСкопируй команды и вставь в другом окне терминала\n\nСКРИПТ ПОКАЖЕТ ИНФУ 30 СЕКУНД"
 PROPUSK
 echo ""
 echo -e "1) sudo crontab -e"
-echo ""
-echo -ne "\r\033[K"
-echo "Добавь команду в CRON"
-echo -e "2) @reboot $HOME/cron_wol.sh"
-echo ""
-echo -ne "\r\033[K"
+sleep 15
+echo -ne "\r\033[K\033[1A\033[K"
+echo -e "Добавь команду в CRON\n\n2) @reboot $HOME/cron_wol.sh"
+echo -ne "\r\033[K\033[1A\033[K\r\033[K\033[1A\033[K\r\033[K\033[1A\033[K"
 }
 Avtomatizaciya
