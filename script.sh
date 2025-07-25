@@ -42,10 +42,9 @@ echo -e "\n=====================================================================
 function Proverka_CRON {
 
 os_info=$(uname -a)
-proverka_cron=$(crontab -V)
-proverka_cron_bubuntu=$(crontab -h)
     if [[ $os_info == *"Debian"* || $os_info == *"Ubuntu"* ]]; then
         echo "Проверка установленного пакета CRONTAB"
+        proverka_cron_bubuntu=$(which crontab)
         if [[ $proverka_cron_bubuntu == *"[ -u user ]"* ]]; then
             echo -e "\nCRONTAB установлен\n"
         else
@@ -55,6 +54,7 @@ proverka_cron_bubuntu=$(crontab -h)
 
     elif [[ $os_info == *"MANJARO"* || $os_info == *"Linux archlinux"* ]]; then
         echo "Проверка установленного пакета CRONTAB"
+        proverka_cron=$(crontab -V)
         if [[ $proverka_cron == *"cronie"* ]]; then
             echo -e "\nCrontab установлен\n"
         else
