@@ -5,6 +5,7 @@ function Proverka_OS {
         echo "Проверка установленного пакета ETHTOOL"
         if [[ $proverka_ethtool == *"ethtool version"* ]]; then
             echo -e "\nEthtool установлен\n"
+            sleep 3
         else
             sudo apt update && sudo apt install ethtool -y
         fi
@@ -24,6 +25,7 @@ function Proverka_OS {
         echo "Проверка установленного пакета ETHTOOL"
         if [[ $proverka_ethtool == *"ethtool version"* ]]; then
             echo -e "\nEthtool установлен\n"
+            sleep 3
         else
             sudo pacman -Sy && sudo pacman -S ethtool
         fi
@@ -47,6 +49,7 @@ os_info=$(uname -a)
         proverka_cron_bubuntu=$(which crontab)
         if [[ $proverka_cron_bubuntu == *"/usr/"* ]]; then
             echo -e "\nCRONTAB установлен\n"
+            sleep 3
         else
             sudo apt update && sudo apt install cron -y
             sudo systemctl enable cron && sudo systemctl start cron
@@ -57,6 +60,7 @@ os_info=$(uname -a)
         proverka_cron=$(crontab -V)
         if [[ $proverka_cron == *"cronie"* ]]; then
             echo -e "\nCrontab установлен\n"
+            sleep 3
         else
             sudo pacman -Sy && sudo pacman -S cron
             sudo systemctl enable cronie && sudo systemctl start cronie
@@ -75,6 +79,8 @@ uznayu_adapters=$(ip a | awk '/192.168./ {print $NF}')
 
 echo "Запускаю команду для включения Wake on LAN"
 
+sleep 2
+
 sudo ethtool -s $uznayu_adapters wol g
 }
 Uznayu_Adapters_and_zapusk_Wake_on_LAN
@@ -83,7 +89,7 @@ function Avtomatizaciya {
 
 echo "Создам скрипт, который будет запускать CRON"
 touch $HOME/cron_wol.sh
-sudo chmod 744 $HOME/cron_wol.s
+sudo chmod 744 $HOME/cron_wol.sh
 echo "sudo ethtool -s $uznayu_adapters wol g" > $HOME/cron_wol.sh
 PROPUSK
 echo -ne "\r\033[KСкопируй команды и вставь в другом окне терминала\n\nСКРИПТ ПОКАЖЕТ ИНФУ 30 СЕКУНД"
