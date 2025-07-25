@@ -45,7 +45,7 @@ os_info=$(uname -a)
     if [[ $os_info == *"Debian"* || $os_info == *"Ubuntu"* ]]; then
         echo "Проверка установленного пакета CRONTAB"
         proverka_cron_bubuntu=$(which crontab)
-        if [[ $proverka_cron_bubuntu == *"[ -u user ]"* ]]; then
+        if [[ $proverka_cron_bubuntu == *"/usr/"* ]]; then
             echo -e "\nCRONTAB установлен\n"
         else
             sudo apt update && sudo apt install cron -y
