@@ -1,6 +1,6 @@
 function Proverka_OS {
     os_info=$(uname -a)
-    proverka_ethtool=$(ethtool --version >/dev/null)
+    proverka_ethtool=$(sudo ethtool --version)
     if [[ $os_info == *"Debian"* || $os_info == *"Ubuntu"* ]]; then
         echo "Проверка установленного пакета ETHTOOL"
         if [[ $proverka_ethtool == *"ethtool version"* ]]; then
@@ -65,6 +65,7 @@ echo -e "1) sudo crontab -e"
 sleep 15
 echo -ne "\r\033[K\033[1A\033[K"
 echo -e "Добавь команду в CRON\n\n2) @reboot $HOME/cron_wol.sh"
+sleep 15
 echo -ne "\r\033[K\033[1A\033[K\r\033[K\033[1A\033[K\r\033[K\033[1A\033[K"
 }
 Avtomatizaciya
