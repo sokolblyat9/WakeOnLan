@@ -43,18 +43,28 @@ function Proverka_CRON {
 
 os_info=$(uname -a)
 proverka_cron=$(crontab -V)
-if [[ $os_info == *"MANJARO"* || $os_info == *"Linux archlinux"* ]]; then
-    echo "Проверка установленного пакета ETHTOOL"
-    if [[ $proverka_cron == *"cronie"* ]]; then
-        echo -e "\nCrontab установлен\n"
-    else
-        sudo pacman -Sy && sudo pacman -S cron
-        sudo systemctl enable cronie && sudo systemctl start cronie
-    fi
+proverka_cron_bubuntu=$(crontab -h)
+    if [[ $os_info == *"Debian"* || $os_info == *"Ubuntu"* ]]; then
+        echo "Проверка установленного пакета CRONTAB"
+        if [[ $proverka_cron_bubuntu == *"[ -u user ]"* ]]; then
+            echo -e "\nCRONTAB установлен\n"
+        else
+            sudo apt update && sudo apt install cron -y
+            sudo systemctl enable cron && sudo systemctl start cron
+        fi
 
-else
-        echo "Ты используешь хуй знает что..."
-fi
+    elif [[ $os_info == *"MANJARO"* || $os_info == *"Linux archlinux"* ]]; then
+        echo "Проверка установленного пакета CRONTAB"
+        if [[ $proverka_cron == *"cronie"* ]]; then
+            echo -e "\nCrontab установлен\n"
+        else
+            sudo pacman -Sy && sudo pacman -S cron
+            sudo systemctl enable cronie && sudo systemctl start cronie
+        fi
+
+    else
+            echo "Ты используешь хуй знает что..."
+    fi
 }
 Proverka_CRON
 
